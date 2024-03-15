@@ -3,13 +3,13 @@
     <div class="col-12 col-md-8 offset-md-2">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Servers</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/servers">Servers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/users']">Users</a>
         </li>
       </ul>
     </div>
