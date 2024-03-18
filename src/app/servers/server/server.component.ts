@@ -11,7 +11,11 @@ import { ServersService } from '../servers.service';
 export class ServerComponent implements OnInit {
   server: { id: number; name: string; status: string };
 
-  constructor(private serversService: ServersService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private serversService: ServersService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const id = +this.route.snapshot.params.id; // this will only be called once
@@ -22,6 +26,6 @@ export class ServerComponent implements OnInit {
   }
 
   onEdit() {
-    this.router.navigate(['edit'], {relativeTo: this.route})
+    this.router.navigate(['edit'], { relativeTo: this.route, queryParamsHandling: 'preserve' });
   }
 }
