@@ -1,7 +1,14 @@
 <div class="row my-3">
   <div class="col-12 col-md-4">
     <div class="list-group">
-      <a href="#" class="list-group-item" *ngFor="let server of servers">
+      <a
+        [routerLink]="['/servers', 5, 'edit']"
+        [queryParams]="{ allowEdit: '1' }"
+        fragment="loading"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers"
+      >
         {{ server.name }}
       </a>
     </div>

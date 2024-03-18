@@ -13,6 +13,14 @@ export class HomeComponent implements OnInit {
 
   onLoadServers() {
     // Business logic
-    this.router.navigate(['/servers'])
+    this.router.navigate(['/servers']);
+  }
+
+  onLoadServer(id: number) {
+    // Business logic
+    this.router.navigate(['/servers', id, 'edit'], {
+      queryParams: { allowEdit: '1' },
+      fragment: 'loading',
+    });
   }
 }
