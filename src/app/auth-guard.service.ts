@@ -1,26 +1,27 @@
-import { Inject } from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivateFn,
+  CanActivateChildFn,
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-export const AuthGuard: CanActivateFn = (
+export const ChildGuard: CanActivateChildFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
-): Observable<boolean> => {
-  return Inject(AuthService)
-    .isAuthenticated()
-    .pipe(
-      map((isAuthenticated) => {
-        if (!isAuthenticated) {
-          Inject(Router).navigate(['/login']);
-          return false;
-        }
+): Observable<boolean> | Promise<boolean> | boolean => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  return authService.is_authenticated().pipe(
+    map((authenticated: boolean) => {
+      if (authenticated) {
         return true;
-      })
-    );
+      } else {
+        router.navigate(['/']);
+      }
+    })
+  );
 };
